@@ -52,17 +52,14 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    @Transactional
     public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
 
-    @Transactional
     public UserDTO saveUserWithAddress(int userId, AddressDTO addressDTO) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
         Address address = new Address(user, addressDTO.getWork(), addressDTO.getHome());
